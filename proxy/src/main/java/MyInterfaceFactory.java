@@ -25,6 +25,7 @@ public class MyInterfaceFactory {
                 " * @Description:\n" +
                 " **/\n" +
                 "public class " + className +" implements MyInterface{\n" +
+                " MyInterface myInterface;" +
                 "    @Override\n" +
                 "    public void func1() {\n" +
                 "        " + fuc1Body + "\n" +
@@ -49,10 +50,11 @@ public class MyInterfaceFactory {
         return "MyInterface$proxy" + count.incrementAndGet();
     }
 
-    private static MyInterface newInstance(String className) throws Exception {
+    private static MyInterface newInstance(String className, MyHandler myHandler) throws Exception {
         Class<?> aClass = MyInterfaceFactory.class.getClassLoader().loadClass(className);
         Constructor<?> constructor = aClass.getConstructor();
         MyInterface proxy = (MyInterface) constructor.newInstance();
+        myHandler.setProxy(proxy);
         return proxy;
     }
 
@@ -60,6 +62,6 @@ public class MyInterfaceFactory {
         String className = getClassName();
         File javaFile = createJavaFile(className, handler);
         Compiler.compile(javaFile);;
-        return newInstance(className);
+        return newInstance(className, handler);
     }
 }
