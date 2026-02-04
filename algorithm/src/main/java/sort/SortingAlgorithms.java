@@ -276,7 +276,7 @@ public class SortingAlgorithms {
         System.arraycopy(output, 0, arr, 0, n);
     }
     public static void main(String[] args) {
-        int[] testArray = {64, 34, 25, 12, 22, 11, 90, 5, 77, 30, 11, 12, 542,754,124,753,123,765};
+        int[] testArray = {64, 34, 25, 12, 22, 11, 90, 5, 77, 30, 11, 12, 542, 754, 124, 753, 123, 765};
         int[] original = testArray.clone();
 
         System.out.println("原始数组: " + Arrays.toString(original));
